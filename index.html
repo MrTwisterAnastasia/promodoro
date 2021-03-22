@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="sass/style.css">
+  <link rel="stylesheet" href="popup.css">
+  <title>Pomodoro app</title>
+</head>
+
+<body class="kumbh peach">
+  <header>
+    <img src="/pomodoro-app/starter-code/assets/logo.svg" alt="logo">
+    <nav>
+      <ul>
+        <li id="promodoro" class="active"><a>promodoro</a></li>
+        <li id="shortBreak"><a>short break</a></li>
+        <li id="longBreak"><a>long break</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="clock">
+    <article>
+      <svg class="progress-ring">
+        <circle class="progress-ring__circle" stroke-width="15" cx="170" cy="170" r="140">
+        </circle>
+      </svg>
+      <div class="content">
+      </div>
+
+    </article>
+  </main>
+
+  <article class="popup" id="entry">
+    <section class="wrapper-popup">
+      <div class="popup-body">
+        <header>
+          <h2>Settings</h2>
+          <img src="assets/icon-close.svg" alt="" id="popup-close">
+        </header>
+        <hr />
+
+        <section>
+          <h2>Time (minutes)</h2>
+          <section class="time-value">
+            <section class="time-value-item">
+              <div class="promodoro-div">
+                <h3>promodoro</h3>
+                <div class="input-number">
+                  <input type="number" name="promodoro-minutes" min="1" max="100" value="25">
+                  <div class="input-arrows">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-up.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepUp();">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-down.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepDown();">
+                  </div>
+                </div>
+
+
+              </div>
+
+            </section>
+
+            <section class="time-value-item">
+              <div class="short-break-div">
+                <h3>short break</h3>
+                <div class="input-number">
+                  <input type="number" name="short-break-minutes" min="1" max="100" value="5">
+                  <div class="input-arrows">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-up.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepUp();">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-down.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepDown();">
+                  </div>
+                </div>
+
+              </div>
+            </section>
+            <section class="time-value-item">
+              <div class="long-break-div">
+                <h3>long break</h3>
+                <div class="input-number">
+                  <input type="number" name="long-break-minutes" min="1" max="100" value="15">
+                  <div class="input-arrows">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-up.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepUp();">
+                    <img src="/pomodoro-app/starter-code/assets/icon-arrow-down.svg" alt=""
+                      onclick="this.parentNode.parentNode.querySelector('[type=number]').stepDown();">
+                  </div>
+                </div>
+
+
+              </div>
+            </section>
+          </section>
+
+        </section>
+        <hr />
+        <section class="adding-style">
+          <h2>font</h2>
+          <section class="fonts">
+            <div id="kumbh" class="font active">Aa</div>
+            <div id="roboto" class="font">Aa</div>
+            <div id="space" class="font">Aa</div>
+          </section>
+        </section>
+        <hr />
+        <section class="adding-style">
+          <h2>color</h2>
+          <section class="accent-colors">
+            <div id="peach" class="accent-color active"></div>
+            <div id="turquoise" class="accent-color"></div>
+            <div id="purpur" class="accent-color"></div>
+          </section>
+        </section>
+        <button class="submit">APPLY</button>
+      </div>
+
+    </section>
+  </article>
+  <footer id="popup-open">
+    <img src="/pomodoro-app/starter-code/assets/icon-settings.svg" alt="">
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="popup.js"></script>
+  <script src="eventListners.js"></script>
+</body>
+
+</html>
