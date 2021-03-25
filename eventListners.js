@@ -2,20 +2,16 @@ window.onload = () => {
    minutesPromodoro.value = 25;
    minutesShortBreak.value = 5;
    minutesLongBreak.value = 15;
-   let promodoro = new Promodoro(minutesPromodoro.value);
-   promodoro.creatContent();
+   creatPromodoroTimer()
 }
 promodoro.addEventListener('click', () => {
-   let promodoro = new Promodoro(minutesPromodoro.value);
-   promodoro.creatContent();
+   creatPromodoroTimer()
 })
 shortBreak.addEventListener('click', () => {
-   let shortBreak = new Promodoro(minutesShortBreak.value);
-   shortBreak.creatContent();
+   creatShortBreakTimer()
 })
 longBreak.addEventListener('click', () => {
-   let longBreak = new Promodoro(minutesLongBreak.value);
-   longBreak.creatContent();
+   creatLongBreakTimer()
 })
 
 liContainer.forEach(el => {

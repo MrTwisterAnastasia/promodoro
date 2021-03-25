@@ -19,55 +19,100 @@ const cancelBtn = document.getElementById('popup-close');
 
 
 class Promodoro {
-   constructor(time) {
+   constructor(name, time) {
+      this.name = name;
       this.promodoro = time;
       this.number = time;
       this.time = this.promodoro * 60;
    }
+
+   static counterPromodoro = 0;
+
+   static countPromodoroTimer(name) {
+      if (name == 'promodoro') {
+         this.counterPromodoro++;
+      }
+   }
+
    radius = circle.r.baseVal.value;
    circumference = 2 * Math.PI * this.radius;
+
    countDownTimer = -1;
+
+
    timer(text, btn) {
       this.countDownTimer = setInterval(() => {
-
          let minutes = Math.floor(this.time / 60);
          let seconds = this.time % 60;
          seconds = seconds < 10 ? '0' + seconds : seconds;
          let percent = 100 - ((100 * minutes) / this.number);
          this.setProgress(percent);
+
          if (minutes == 0 && seconds == 0) {
+            Promodoro.countPromodoroTimer(this.name);
             clearInterval(this.countDownTimer);
             btn.innerHTML = 'restart';
+            this.pause();
          }
+
          text.innerHTML = `${minutes}:${seconds}`;
          this.time--;
       }, 1000);
-      this.preventFail()
+
+      this.preventFail();
+   }
+   pause() {
+      let userPauseTime = 60;
+      this.userPause = setInterval(() => {
+         userPauseTime--;
+         if (userPauseTime == 0) {
+            clearInterval(this.userPause);
+            this.switcher();
+         }
+      }, 100);
    }
    preventFail() {
       liContainer.forEach(el => {
          el.addEventListener('click', () => {
             clearInterval(this.countDownTimer);
+            clearInterval(this.userPause);
             this.countDownTimer = -1;
          });
       });
       openBtn.addEventListener('click', () => {
          clearInterval(this.countDownTimer);
+         clearInterval(this.userPause);
          this.countDownTimer = -1;
       });
    }
-   setProgress(percent) {
-      const offset = this.circumference - percent / 100 * this.circumference;
-      circle.style.strokeDashoffset = offset;
-   }
 
+   switcher() {
+      switch (this.name) {
+         case 'promodoro':
+            if (4 <= Promodoro.counterPromodoro) {
+               Promodoro.counterPromodoro = 0;
+               addClassActive(longBreak, liContainer);
+               creatLongBreakTimer();
+               alert("You've done it!!! Take a long break and enjoy yourself))");
+            } else if (Promodoro.counterPromodoro < 4) {
+               addClassActive(shortBreak, liContainer);
+               creatShortBreakTimer();
+            }
+            break
+         default:
+            addClassActive(promodDiv, liContainer);
+            creatPromodoroTimer();
+      }
+   }
    addEvent(time, btn) {
       btn.addEventListener('click', () => {
          if (this.countDownTimer == -1) {
             btn.innerHTML = 'PAUSE';
             this.timer(time, btn);
+            clearInterval(this.userPause);
          } else if (btn.innerHTML == 'restart') {
-            let again = new Promodoro(this.number);
+            let again = new Promodoro(`${this.name}`, this.number);
+            clearInterval(this.userPause);
             again.creatContent();
          } else {
             btn.innerHTML = 'START';
@@ -75,6 +120,10 @@ class Promodoro {
             this.countDownTimer = -1;
          }
       });
+   }
+   setProgress(percent) {
+      const offset = this.circumference - percent / 100 * this.circumference;
+      circle.style.strokeDashoffset = offset;
    }
    creatContent() {
       container.innerHTML = '';
@@ -89,6 +138,7 @@ class Promodoro {
       container.appendChild(btn);
 
       this.addEvent(time, btn);
+
    }
 
 }
@@ -116,6 +166,15 @@ function addingStyle(el, index) {
    document.body.classList.add(firstItem, secondItem);
 }
 
-
-
-
+function creatPromodoroTimer() {
+   let promodoro = new Promodoro('promodoro', minutesPromodoro.value);
+   promodoro.creatContent();
+}
+function creatShortBreakTimer() {
+   let shortBreak = new Promodoro('shortBreak', minutesShortBreak.value);
+   shortBreak.creatContent();
+}
+function creatLongBreakTimer() {
+   let longBreak = new Promodoro('longBreak', minutesLongBreak.value);
+   longBreak.creatContent();
+}
