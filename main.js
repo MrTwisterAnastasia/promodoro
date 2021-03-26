@@ -14,6 +14,9 @@ const minutesPromodoro = document.querySelector('input[name=promodoro-minutes]')
 const minutesShortBreak = document.querySelector('input[name=short-break-minutes]');
 const minutesLongBreak = document.querySelector('input[name=long-break-minutes]');
 
+const arrowsPlus = document.querySelectorAll('.arrow-plus');
+const arrowsMinus = document.querySelectorAll('.arrow-minus');
+
 const openBtn = document.getElementById('popup-open');
 const cancelBtn = document.getElementById('popup-close');
 

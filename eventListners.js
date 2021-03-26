@@ -26,6 +26,14 @@ accentColorsContainer.forEach(el => {
    el.addEventListener('click', () => addingStyle(el, 1));
 })
 
+arrowsPlus.forEach((el => {
+   el.addEventListener('click', (el) => el.target.parentNode.parentNode.querySelector('[type=number]').stepUp())
+}))
+arrowsMinus.forEach((el => {
+   el.addEventListener('click', (el) => el.target.parentNode.parentNode.querySelector('[type=number]').stepDown())
+}))
+
 applyBtn.addEventListener('click', () => {
    document.querySelector('.active').click();
 })
+

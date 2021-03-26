@@ -293,8 +293,8 @@ body article .wrapper-popup .popup-body .submit {
   color: #fff;
   padding: 1% 5%;
   border-radius: 27px;
-  position: fixed;
-  left: 43%;
+  position: absolute;
+  left: 40%;
 }
 @media screen and (max-width: 625px) {
   body article .wrapper-popup .popup-body .submit {
